@@ -1,0 +1,11 @@
+{
+  "name": "TimedEvent",
+  "title": "Timed Event",
+  "description": "Set up an event reminder for a specific exchange which will pop up a reminder to the GM when that exchange is reached.",
+  "author": "Richard Bellingham (Skimble)",
+  "scripts": ["./TimedEvent.js"],
+  "version": "1.0.0",
+  "minimumCoreVersion": "0.6.0",
+  "compatibleCoreVersion":"0.6.0",
+  "download":""
+}
