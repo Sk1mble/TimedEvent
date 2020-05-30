@@ -95,8 +95,8 @@ class TimedEvent extends Application {
             d.render(true);
 
             Hooks.on('renderCombatTracker', () => {
-                let r = game.combat.round;
                 try {
+                    var r = game.combat.round;
                     let pendingEvents = game.combat.getFlag("TimedEvent","timedEvents");
                     for (let i = 0; i<pendingEvents.length;i++){
                         var event = pendingEvents[i];
