@@ -93,36 +93,35 @@ class TimedEvent extends Application {
             dO.resizable="true"
             let d = new Dialog(dp, dO);
             d.render(true);
-
-            Hooks.on('renderCombatTracker', () => {
-                try {
-                    var r = game.combat.round;
-                    let pendingEvents = game.combat.getFlag("TimedEvent","timedEvents");
-                    for (let i = 0; i<pendingEvents.length;i++){
-                        var event = pendingEvents[i];
-                        if (r==event.round && event.complete != true){
-                            //console.log("Match");
-                            var dp = {
-                                "title": "Timed Event",
-                                "content": `<h2>Timed event for round ${event.round}:</h2><p></p>
-                                            <h3>${event.event}</h3>`,
-                                default:"oops",
-                                "buttons": {
-                                    oops: {
-                                        label: "OK",
-                                    }
-                                }
-                            }
-                            event.complete = true;
-                            let d = new Dialog(dp);
-                            d.render(true);
-                            Hooks.off;
-                        }
-                    }
-                }catch {
-
-                }
-            })
         }
     }
 }
+
+Hooks.on('renderCombatTracker', () => {
+    try {
+        var r = game.combat.round;
+        let pendingEvents = game.combat.getFlag("TimedEvent","timedEvents");
+        for (let i = 0; i<pendingEvents.length;i++){
+            var event = pendingEvents[i];
+            if (r==event.round && event.complete != true){
+                //console.log("Match");
+                var dp = {
+                    "title": "Timed Event",
+                    "content": `<h2>Timed event for round ${event.round}:</h2><p></p>
+                                <h3>${event.event}</h3>`,
+                    default:"oops",
+                    "buttons": {
+                        oops: {
+                            label: "OK",
+                        }
+                    }
+                }
+                event.complete = true;
+                let d = new Dialog(dp);
+                d.render(true);
+            }
+        }
+    }catch {
+
+    }
+})
